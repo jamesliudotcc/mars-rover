@@ -1,0 +1,10 @@
+{
+  "name": "mars-rover",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "jamesliudotcc <james@jamesliu.cc>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^11.11.3"
+  }
+}
