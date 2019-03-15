@@ -1,6 +1,6 @@
 import { Position, Rover } from './types';
 import { readFile, setBoundary, roversFromInput } from './setup';
-import { runRovers } from './runRovers';
+import { runRover } from './runRover';
 
 export const input = readFile()
   // Using lowercase doesn't create ambiguity, so shouldn't throw
@@ -12,7 +12,7 @@ let boundary = setBoundary(input);
 let rovers: Rover[] = roversFromInput(input);
 let finalRoverPositions: Position[] = [];
 rovers.forEach(rover => {
-  finalRoverPositions.push(runRovers(rover));
+  finalRoverPositions.push(runRover(rover, finalRoverPositions));
 });
 
 finalRoverPositions.forEach(rover => {

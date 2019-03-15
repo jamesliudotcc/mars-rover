@@ -32,6 +32,7 @@ export function roversFromInput(input: string[]) {
     rovers.push({
       position: initialPosition,
       commands: <RoverCommand[]>moves,
+      boundary: setBoundary(input),
     });
   }
   return rovers;

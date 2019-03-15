@@ -9,4 +9,6 @@ export type Position = {
 export type Rover = {
   position: Position;
   commands: RoverCommand[];
+  // Each rover knows the boundary so that it is passed in to each function requiring a Rover.
+  boundary: Boundary;
 };

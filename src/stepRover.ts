@@ -1,6 +1,6 @@
 import { Position, RoverCommand } from './types';
 
-export function moveRover(position: Position, command: RoverCommand): Position {
+export function stepRover(position: Position, command: RoverCommand): Position {
   if (command === 'L') {
     switch (position.direction) {
       case 'N':
