@@ -37,7 +37,6 @@ test('When rover falls off by going into negative in X direction, throw', () => 
     );
   }).toThrow();
 });
-
 test('When rover falls off by going into negative in Y direction, throw', () => {
   expect(() => {
     runRover(
@@ -62,7 +61,6 @@ test('When rover falls off by going over the boundary in X direction, throw', ()
     );
   }).toThrow();
 });
-
 test('When rover falls off by going over the boundary in Y direction, throw', () => {
   expect(() => {
     runRover(
@@ -74,4 +72,53 @@ test('When rover falls off by going over the boundary in Y direction, throw', ()
       []
     );
   }).toThrow();
+});
+
+test('Rover can go to 0 in X direction', () => {
+  expect(
+    runRover(
+      {
+        position: { x: 1, y: 1, direction: 'W' },
+        commands: ['M'],
+        boundary: { x: 5, y: 5 },
+      },
+      []
+    )
+  ).toEqual({ x: 0, y: 1, direction: 'W' });
+});
+test('Rover can go to 0 in Y direction', () => {
+  expect(
+    runRover(
+      {
+        position: { x: 1, y: 1, direction: 'S' },
+        commands: ['M'],
+        boundary: { x: 5, y: 5 },
+      },
+      []
+    )
+  ).toEqual({ x: 1, y: 0, direction: 'S' });
+});
+test('Rover can go to the boundary in X direction', () => {
+  expect(
+    runRover(
+      {
+        position: { x: 4, y: 4, direction: 'E' },
+        commands: ['M'],
+        boundary: { x: 5, y: 5 },
+      },
+      []
+    )
+  ).toEqual({ x: 5, y: 4, direction: 'E' });
+});
+test('Rover can go to the boundary in Y direction', () => {
+  expect(
+    runRover(
+      {
+        position: { x: 4, y: 4, direction: 'E' },
+        commands: ['M'],
+        boundary: { x: 5, y: 5 },
+      },
+      []
+    )
+  ).toEqual({ x: 5, y: 4, direction: 'E' });
 });
