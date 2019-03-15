@@ -6,7 +6,6 @@ import {
   Rover,
   RoverCommand,
 } from './types';
-import { input } from './index';
 export function readFile() {
   if (process.argv.length < 3) {
     console.log(`Usage: node ${process.argv[1]} FILENAME`);
@@ -27,8 +26,8 @@ export function setBoundary(input: string[]): Boundary {
 export function roversFromInput(input: string[]) {
   let rovers: Rover[] = [];
   for (let i = 1; i < input.length - 1; i += 2) {
-    let initialPosition: Position = writeInitialPosition(i);
-    let moves: RoverCommand[] = writeRoverMoves(i);
+    let initialPosition: Position = writeInitialPosition(i, input);
+    let moves: RoverCommand[] = writeRoverMoves(i, input);
     rovers.push({
       position: initialPosition,
       commands: <RoverCommand[]>moves,
@@ -37,7 +36,7 @@ export function roversFromInput(input: string[]) {
   }
   return rovers;
 }
-function writeRoverMoves(i: number) {
+function writeRoverMoves(i: number, input: string[]) {
   let movesLine = input[i + 1].split('');
   let moves: RoverCommand[];
   if (movesLine.every(move => move === 'M' || move === 'L' || move === 'R')) {
@@ -49,7 +48,7 @@ function writeRoverMoves(i: number) {
   }
   return moves;
 }
-function writeInitialPosition(i: number) {
+function writeInitialPosition(i: number, input: string[]) {
   let initialPositionLine = input[i].split(' ');
   let initialPosition: {
     x: number;
