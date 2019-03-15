@@ -13,6 +13,7 @@ const input = readFile()
   .split(/\n|\r|\r\n/gm);
 
 let rovers: Rover[] = [];
+let finalRoverPositions: Position[] = [];
 
 for (let i = 1; i < input.length - 1; i += 2) {
   let initialPosition: Position = writeInitialPosition(i);
@@ -20,7 +21,7 @@ for (let i = 1; i < input.length - 1; i += 2) {
 
   rovers.push({
     position: initialPosition,
-    directions: <RoverCommand[]>moves,
+    commands: <RoverCommand[]>moves,
   });
 }
 console.log('Rovers: ', rovers);
@@ -32,6 +33,17 @@ function readFile() {
   }
   const filename = process.argv[2];
   return fs.readFileSync(filename, 'utf8');
+}
+
+function setBoundary(input: string[]): Boundary {
+  const boundary = {
+    x: Number(input[0].split(' ')[0]),
+    y: Number(input[0].split(' ')[1]),
+  };
+  if (isNaN(boundary.x) || isNaN(boundary.y)) {
+    throw new Error('Boundary line 0 must be of format 1 1');
+  }
+  return boundary;
 }
 
 function writeRoverMoves(i: number) {
@@ -50,8 +62,8 @@ function writeRoverMoves(i: number) {
 function writeInitialPosition(i: number) {
   let initialPositionLine = input[i].split(' ');
   let initialPosition: {
-    x: Number;
-    y: Number;
+    x: number;
+    y: number;
     direction: CompassDiretion;
   };
   if (
@@ -73,13 +85,9 @@ function writeInitialPosition(i: number) {
   return initialPosition;
 }
 
-function setBoundary(input: string[]): Boundary {
-  const boundary = {
-    x: Number(input[0].split(' ')[0]),
-    y: Number(input[0].split(' ')[1]),
-  };
-  if (isNaN(boundary.x) || isNaN(boundary.y)) {
-    throw new Error('Boundary line 0 must be of format 1 1');
-  }
-  return boundary;
+function runRover(rover: Rover): Rover {
+  rover.commands.forEach(direction => {
+    //
+  });
+  return;
 }
