@@ -1,6 +1,7 @@
 import { Position, Rover } from './types';
 import { moveRover } from './moveRover';
-export function runRover(rover: Rover): Position {
+
+export function runRovers(rover: Rover): Position {
   let history: Position[] = [rover.position];
   rover.commands.forEach(direction => {
     // Unshift so that the program can always read [0] for latest position
