@@ -6,24 +6,25 @@ import {
   Rover,
   RoverCommand,
 } from './types';
+import { moveRover } from './moveRover';
 
 const input = readFile()
-  // Using lowercase doesn't create ambiguitys so shouldn't throw, this is a nice to have
+  // Using lowercase doesn't create ambiguity, so shouldn't throw
   .toUpperCase()
   .split(/\n|\r|\r\n/gm);
 
-let rovers: Rover[] = roversFromInput(input);
-let finalRoverPositions: Position[] = [];
 let boundary = setBoundary(input);
-
-// roversFromInput(input);
-
 console.log('Boundary: ', boundary);
 
+let rovers: Rover[] = roversFromInput(input);
+let finalRoverPositions: Position[] = [];
 rovers.forEach(rover => {
-  console.log(rover);
+  finalRoverPositions.push(runRover(rover));
 });
 
+finalRoverPositions.forEach(rover => {
+  console.log(`${rover.x} ${rover.y} ${rover.direction}`);
+});
 function readFile() {
   if (process.argv.length < 3) {
     console.log(`Usage: node ${process.argv[1]} FILENAME`);
@@ -95,9 +96,14 @@ function writeInitialPosition(i: number) {
   return initialPosition;
 }
 
-function runRover(rover: Rover): Rover {
+function runRover(rover: Rover): Position {
+  let history: Position[] = [rover.position];
+
   rover.commands.forEach(direction => {
-    //
+    // Unshift so that the program can always read [0] for latest position
+    // Further history is kept for debugging purposes
+    history.unshift(moveRover(history[0], direction));
+    // check history[0] for off cliff, prior rovers
   });
-  return;
+  return history[0];
 }
