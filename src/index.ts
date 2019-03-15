@@ -12,20 +12,17 @@ const input = readFile()
   .toUpperCase()
   .split(/\n|\r|\r\n/gm);
 
-let rovers: Rover[] = [];
+let rovers: Rover[] = roversFromInput(input);
 let finalRoverPositions: Position[] = [];
+let boundary = setBoundary(input);
 
-for (let i = 1; i < input.length - 1; i += 2) {
-  let initialPosition: Position = writeInitialPosition(i);
-  let moves: RoverCommand[] = writeRoverMoves(i);
+// roversFromInput(input);
 
-  rovers.push({
-    position: initialPosition,
-    commands: <RoverCommand[]>moves,
-  });
-}
-console.log('Rovers: ', rovers);
-console.log('Boundary: ', setBoundary(input));
+console.log('Boundary: ', boundary);
+
+rovers.forEach(rover => {
+  console.log(rover);
+});
 
 function readFile() {
   if (process.argv.length < 3) {
@@ -44,6 +41,19 @@ function setBoundary(input: string[]): Boundary {
     throw new Error('Boundary line 0 must be of format 1 1');
   }
   return boundary;
+}
+
+function roversFromInput(input: string[]) {
+  let rovers: Rover[] = [];
+  for (let i = 1; i < input.length - 1; i += 2) {
+    let initialPosition: Position = writeInitialPosition(i);
+    let moves: RoverCommand[] = writeRoverMoves(i);
+    rovers.push({
+      position: initialPosition,
+      commands: <RoverCommand[]>moves,
+    });
+  }
+  return rovers;
 }
 
 function writeRoverMoves(i: number) {
