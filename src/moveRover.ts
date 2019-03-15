@@ -13,7 +13,7 @@ export function moveRover(position: Position, command: RoverCommand): Position {
         return { ...position, direction: 'S' };
       default:
         throw new Error(
-          `Sometthing went wrong at position ${position} and command ${command}`
+          `Something went wrong at position ${position} and command ${command}`
         );
     }
   } else if (command === 'R') {
@@ -28,7 +28,7 @@ export function moveRover(position: Position, command: RoverCommand): Position {
         return { ...position, direction: 'N' };
       default:
         throw new Error(
-          `Sometthing went wrong at position ${position} and command ${command}`
+          `Something went wrong at position ${position} and command ${command}`
         );
     }
   } else if (command === 'M') {
@@ -40,14 +40,13 @@ export function moveRover(position: Position, command: RoverCommand): Position {
       case 'S':
         return { ...position, y: position.y - 1 };
       case 'W':
-        return { ...position, y: position.x - 1 };
+        return { ...position, x: position.x - 1 };
       default:
         throw new Error(
-          `Sometthing went wrong at position ${position} and command ${command}`
+          `Something went wrong at position ${position} and command ${command}`
         );
     }
   } else {
     throw new Error('The command was not L, R, or M. How????');
   }
 }
-console.log(moveRover({ x: 1, y: 1, direction: 'N' }, 'M'));
