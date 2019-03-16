@@ -17,16 +17,23 @@
 > The output for each rover should be its final coordinates and heading.
 >
 > Input:
+
 > 5 5
+
 > 1 2 N
+
 > LMLMLMLMM
+
 > 3 3 E
+
 > MMRMMRMRRM
->
+
 > Output:
+
 > 1 3 N
+
 > 5 1 E
->
+
 > Your solution should be considered "production quality” code: it should accept arbitrary inputs, and include things like test coverage, documentation, and execution scripts as you see fit.
 
 This solution includes tests.
