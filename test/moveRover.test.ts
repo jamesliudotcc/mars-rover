@@ -89,4 +89,3 @@ test('When Rover is pointed to W, M Moves 1 W', () => {
     direction: 'W',
   });
 });
-// Add tests to test that invalid inputs throw.

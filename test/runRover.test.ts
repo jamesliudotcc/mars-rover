@@ -1,5 +1,6 @@
 import { runRover } from '../src/runRover';
 
+// Examples work
 test('First example rover works', () => {
   expect(
     runRover(
@@ -25,6 +26,7 @@ test('Second example rover works', () => {
   ).toEqual({ x: 5, y: 1, direction: 'E' });
 });
 
+// Going over boundaries results in error
 test('When rover falls off by going into negative in X direction, throw', () => {
   expect(() => {
     runRover(
@@ -74,6 +76,7 @@ test('When rover falls off by going over the boundary in Y direction, throw', ()
   }).toThrow();
 });
 
+// Going up to boundaries does not result in error
 test('Rover can go to 0 in X direction', () => {
   expect(
     runRover(
@@ -121,4 +124,18 @@ test('Rover can go to the boundary in Y direction', () => {
       []
     )
   ).toEqual({ x: 5, y: 4, direction: 'E' });
+});
+
+// Running over previously placed rover results in error
+test('When rover attempts to go over a previously placed rover, throw', () => {
+  expect(() => {
+    runRover(
+      {
+        position: { x: 1, y: 1, direction: 'N' },
+        commands: ['M'],
+        boundary: { x: 5, y: 5 },
+      },
+      [{ x: 1, y: 2, direction: 'E' }]
+    );
+  }).toThrow();
 });
