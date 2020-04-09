@@ -5,7 +5,7 @@
   "author": "jamesliudotcc <james@jamesliu.cc>",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^11.11.3"
+    "@types/node": "^13.11.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
